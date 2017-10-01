@@ -24,3 +24,8 @@ label {
   width: 120px;
   text-align: center;
 }
+
+.col-actions {
+  width: 90px;
+  text-align: center;
+}
