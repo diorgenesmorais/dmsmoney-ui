@@ -4,6 +4,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: #404c51;
 }
+a {
+  color: #33a7b7;
+  text-decoration: none;
+}
+a:hover, a:focus {
+  text-decoration: underline;
+}
 label {
   font-weight: bold;
 }

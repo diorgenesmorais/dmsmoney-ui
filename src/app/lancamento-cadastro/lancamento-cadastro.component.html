@@ -6,11 +6,12 @@
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Lançamento</label>
-        <input pInputText type="text">
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true"
+          [showIcon]="true" [locale]="pt_BR"></p-calendar>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Recebimento</label>
-        <input pInputText type="text">
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt_BR"></p-calendar>
       </div>
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Descição</label>
@@ -35,6 +36,7 @@
       <div class="ui-g-12">
         <button type="submit" label="Salvar" pButton></button>
         <button type="button" label="Novo" pButton class="ui-button-info"></button>
+        <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
     </div>
   </form>
