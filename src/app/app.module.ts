@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
@@ -44,6 +45,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+
     InputTextModule,
     ButtonModule,
     DataTableModule,
@@ -53,6 +56,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     SelectButtonModule,
     DropdownModule,
     InputMaskModule,
+
     CurrencyMaskModule
   ],
   providers: [
