@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form #lancamentoForm="ngForm" >
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Novo Lançamento</h1>
@@ -11,8 +11,10 @@
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Lançamento</label>
-        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true"
-          [showIcon]="true" [locale]="pt_BR"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="false"
+          [showIcon]="true" [locale]="pt_BR" ngModel name="lancamento" #lancamento="ngModel"
+          required ></p-calendar>
+        <app-message [control]="lancamento" error="required" text="Informe o lançamento" ></app-message>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
@@ -27,25 +29,25 @@
       </div>
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
-        <input pInputText type="text" placeholder="0,00" name="valor" ngModel
+        <input pInputText type="text" placeholder="0,00" name="valor" ngModel required
         currencyMask [options]="{ prefix: '', allowNegative: false}">
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
         <p-dropdown [options]="categorias" [autoWidth]="false"
-          placeholder="Selecione"></p-dropdown>
+          placeholder="Selecione" ngModel name="categoria" required ></p-dropdown>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa {{ pessoa.value }}</label>
-        <p-dropdown [options]="pessoas" [autoWidth]="false"
-          placeholder="Selecione" #pessoa [filter]="true"></p-dropdown>
+        <p-dropdown [options]="pessoas" [autoWidth]="false" placeholder="Selecione"
+           #pessoa [filter]="true" ngModel name="pessoa" required ></p-dropdown>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
         <textarea pInputTextarea rows="3" ></textarea>
       </div>
       <div class="ui-g-12">
-        <button type="submit" label="Salvar" pButton></button>
+        <button type="submit" label="Salvar" pButton [disabled]="!lancamentoForm.valid" ></button>
         <button type="button" label="Novo" pButton class="ui-button-info"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
