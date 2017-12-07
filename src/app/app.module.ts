@@ -22,6 +22,8 @@ import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.compo
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { MessageComponent } from './message/message.component';
+import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
+import { PessoaGridComponent } from './pessoa-grid/pessoa-grid.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: 'right',
@@ -42,7 +44,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     PessoaPesquisaComponent,
     LancamentoCadastroComponent,
     PessoaCadastroComponent,
-    MessageComponent
+    MessageComponent,
+    LancamentoGridComponent,
+    PessoaGridComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,25 @@
+<p-dataTable [value]="lancs" [paginator]="true" [rows]="2" [responsive]="true">
+    <p-column field="pessoa" header="Pessoa"></p-column>
+    <p-column field="descricao" header="Descrição"></p-column>
+    <p-column field="dataVencimento" header="Vencimento" styleClass="col-data">
+      <ng-template let-lanc="rowData" pTemplate="body">
+        <span>{{lanc.dataVencimento | date:'dd/MM/y'}}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="dataPagamento" header="Pagamento" styleClass="col-data">
+      <ng-template let-pago="rowData" pTemplate="body">
+        <span>{{pago.dataPagamento | date:'dd/MM/y'}}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="valor" header="Valor" styleClass="col-valor">
+      <ng-template let-lanc="rowData" pTemplate="body" >
+        <span [style.color]="lanc.tipo === 'DESPESA' ? 'red' : 'blue'">{{lanc.valor | number:'1.2-2'}}</span>
+      </ng-template>
+    </p-column>
+    <p-column styleClass="col-actions">
+      <ng-template pTemplate="body">
+        <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+        <button pButton icon="fa-trash"></button>
+      </ng-template>
+    </p-column>
+  </p-dataTable>

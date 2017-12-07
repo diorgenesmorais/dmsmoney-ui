@@ -1,0 +1,18 @@
+<p-dataTable [value]="peoples" [paginator]="true" [rows]="2" [responsive]="true">
+    <p-column field="nome" header="Nome"></p-column>
+    <p-column field="cidade" header="Cidade"></p-column>
+    <p-column field="estado" header="Estado"></p-column>
+    <p-column field="ativo" header="Status">
+      <ng-template let-pes="rowData" pTemplate="body">
+        <a href="javascript:;" [pTooltip]="pes.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top">
+          {{ pes.ativo ? 'Ativo' : 'Inativo' }}
+        </a>
+      </ng-template>
+    </p-column>
+    <p-column styleClass="col-actions">
+      <ng-template pTemplate="body">
+        <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+        <button pButton icon="fa-trash"></button>
+      </ng-template>
+    </p-column>
+  </p-dataTable>
