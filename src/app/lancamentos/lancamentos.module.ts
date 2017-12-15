@@ -18,6 +18,8 @@ import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pe
 import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
 import { FormsModule } from '@angular/forms';
 
+import { SharedModule } from './../shared/shared.module';
+
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: 'right',
   allowNegative: true,
@@ -44,7 +46,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     DropdownModule,
     InputMaskModule,
 
-    CurrencyMaskModule
+    CurrencyMaskModule,
+
+    SharedModule
   ],
   providers: [
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }

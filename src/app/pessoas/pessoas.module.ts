@@ -10,6 +10,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/components/button/button';
 
+import { SharedModule } from './../shared/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +21,9 @@ import { ButtonModule } from 'primeng/components/button/button';
     InputMaskModule,
     DataTableModule,
     TooltipModule,
-    ButtonModule
+    ButtonModule,
+
+    SharedModule
   ],
   declarations: [
     PessoaCadastroComponent,
