@@ -1,4 +1,5 @@
-<p-dataTable [value]="lancs" [paginator]="true" [rows]="2" [responsive]="true">
+<p-dataTable [value]="lancs" [paginator]="true" [rows]="2" [responsive]="true"
+  emptyMessage="nenhum lançamento encontrado">
     <p-column field="pessoa" header="Pessoa"></p-column>
     <p-column field="descricao" header="Descrição"></p-column>
     <p-column field="dataVencimento" header="Vencimento" styleClass="col-data">
