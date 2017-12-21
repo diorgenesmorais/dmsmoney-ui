@@ -15,7 +15,6 @@ import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/
 
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pesquisa.component';
-import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
 import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from './../shared/shared.module';
@@ -55,8 +54,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   ],
   declarations: [
     LancamentoCadastroComponent,
-    LancamentoPesquisaComponent,
-    LancamentoGridComponent
+    LancamentoPesquisaComponent
   ],
   exports: [
     LancamentoCadastroComponent,
