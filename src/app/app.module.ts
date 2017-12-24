@@ -11,6 +11,8 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 
+import { ToastyModule } from 'ng2-toasty';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { HttpModule } from '@angular/http';
     LancamentosModule,
     PessoasModule,
 
-    CoreModule
+    CoreModule,
+
+    ToastyModule.forRoot()
   ],
   providers: [LancamentoService, PessoasService],
   bootstrap: [AppComponent]
