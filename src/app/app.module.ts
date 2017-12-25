@@ -12,6 +12,9 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 
 import { ToastyModule } from 'ng2-toasty';
+import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
+import { ConfirmationService } from 'primeng/components/common/api';
+import { DecimalPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,9 +31,15 @@ import { ToastyModule } from 'ng2-toasty';
 
     CoreModule,
 
-    ToastyModule.forRoot()
+    ToastyModule.forRoot(),
+    ConfirmDialogModule
   ],
-  providers: [LancamentoService, PessoasService],
+  providers: [
+    LancamentoService,
+    PessoasService,
+    ConfirmationService,
+    DecimalPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
