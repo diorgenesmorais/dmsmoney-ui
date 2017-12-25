@@ -6,12 +6,6 @@
   <app-pessoa-cadastro></app-pessoa-cadastro>
   <app-pessoa-pesquisa></app-pessoa-pesquisa>
 -->
-<ng2-toasty></ng2-toasty>
-<p-confirmDialog header="Confirmação" icon="fa fa-question-circle" #confirmacao >
-  <p-footer>
-    <button type="button" pButton icon="fa-check" label="Sim"
-    (click)="confirmacao.accept()" ></button>
-    <button type="button" pButton icon="fa-times" label="Não"
-    (click)="confirmacao.reject()" ></button>
-  </p-footer>
-</p-confirmDialog>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+
+<p-confirmDialog header="Confirmação" icon="fa fa-question-circle" acceptLabel="Sim" rejectLabel="Não" ></p-confirmDialog>
