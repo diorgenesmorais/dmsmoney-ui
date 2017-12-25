@@ -53,19 +53,19 @@ export class LancamentoService {
         return resultado;
       })
       .catch(error => {
-        return Promise.reject(`Não foi possível pesquisar\n${error}`);
+        return Promise.reject(error);
       });
   }
 
   excluir(id: number): Promise<void> {
     const headers = new Headers();
     headers.append('Authorization', 'Basic YWRtaW5AZG1zZWxldHJvbmljYS5jb206YWRtaW4=');
-    console.log(`ID: ${id}`);
+
     return this.http.delete(`${this.url}/${id}`, { headers })
             .toPromise()
             .then(() => null)
             .catch(error => {
-              return Promise.reject(`Erro:\n${error}`);
+              return Promise.reject(error);
             });
   }
 }

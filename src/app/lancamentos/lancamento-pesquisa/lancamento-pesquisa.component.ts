@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { DecimalPipe } from '@angular/common';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -18,6 +19,7 @@ export class LancamentoPesquisaComponent implements OnInit {
 
   constructor(
     private lancamentoService: LancamentoService,
+    private error: ErrorHandlerService,
     private toastyService: ToastyService,
     private confirmation: ConfirmationService,
     private decimalPipe: DecimalPipe
@@ -33,7 +35,8 @@ export class LancamentoPesquisaComponent implements OnInit {
       .then(resultado => {
         this.totalRegistros = resultado.total;
         this.lancamentos = resultado.lancamentos;
-      });
+      })
+      .catch(erro => this.error.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -62,6 +65,6 @@ export class LancamentoPesquisaComponent implements OnInit {
 
         this.toastyService.success('Lançamento excluido com sucesso!');
       })
-      .catch(error => console.log(error));
+      .catch(erro => this.error.handle(erro));
   }
 }
