@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+import { ToastyService } from 'ng2-toasty';
+
 import { PessoasService, PessoaFiltro } from '../pessoas.service';
+import { ErrorHandlerService } from './../../core/error-handler.service';
 
 @Component({
   selector: 'app-pessoa-pesquisa',
@@ -11,7 +15,11 @@ export class PessoaPesquisaComponent implements OnInit {
   pessoas = [];
   filtro = new PessoaFiltro();
 
-  constructor(private pessoasService: PessoasService) {}
+  constructor(
+    private pessoasService: PessoasService,
+    private toasty: ToastyService,
+    private errorHandler: ErrorHandlerService
+  ) {}
 
   ngOnInit() {
   }
@@ -25,4 +33,19 @@ export class PessoaPesquisaComponent implements OnInit {
         this.pessoas = resp.pessoas;
       });
   }
+
+  excluir(id: number, tabela: any) {
+    this.pessoasService.excluir(id)
+       .then(() => {
+          if (tabela.first === 0) {
+            this.pesquisar();
+          } else {
+            tabela.first = 0;
+          }
+
+          this.toasty.success('Excluido pessoa com sucesso!');
+       })
+       .catch(erro => this.errorHandler.handle(erro));
+  }
+
 }

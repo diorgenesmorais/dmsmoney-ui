@@ -15,7 +15,7 @@ export class PessoasService {
   pessoasUrl = 'http://localhost:8080/pessoas';
 
   constructor(
-    private http: Http,
+    private http: Http
   ) { }
 
   pesquisar(pessoa: PessoaFiltro): Promise<any> {
@@ -51,5 +51,17 @@ export class PessoasService {
     return this.http.get(this.pessoasUrl, { headers })
             .toPromise()
             .then(response => response.json());
+  }
+
+  excluir(id: number): Promise<void> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AZG1zZWxldHJvbmljYS5jb206YWRtaW4=');
+
+    return this.http.delete(`${this.pessoasUrl}/${id}`, { headers })
+            .toPromise()
+            .then(() => null)
+            .catch(erro => {
+              return Promise.reject(erro);
+            });
   }
 }
