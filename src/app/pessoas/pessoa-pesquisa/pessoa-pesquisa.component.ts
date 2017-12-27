@@ -4,6 +4,7 @@ import { ToastyService } from 'ng2-toasty';
 
 import { PessoasService, PessoaFiltro } from '../pessoas.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
+import { errorHandler } from '@angular/platform-browser/src/browser';
 
 @Component({
   selector: 'app-pessoa-pesquisa',
