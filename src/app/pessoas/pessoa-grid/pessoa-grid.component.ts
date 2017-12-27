@@ -1,8 +1,11 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, Input, ViewChild } from '@angular/core';
 
 import { LazyLoadEvent } from 'primeng/components/common/api';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import { ToastyService } from 'ng2-toasty';
 
+import { PessoasService } from './../pessoas.service';
 import { PessoaPesquisaComponent } from './../pessoa-pesquisa/pessoa-pesquisa.component';
 
 @Component({
@@ -18,7 +21,10 @@ export class PessoaGridComponent {
 
 constructor(
   private pesquisa: PessoaPesquisaComponent,
-  private confirmation: ConfirmationService
+  private confirmation: ConfirmationService,
+  private pessoaService: PessoasService,
+  private errorhandler: ErrorHandlerService,
+  private toasty: ToastyService
 ) {}
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -33,5 +39,15 @@ constructor(
         this.pesquisa.excluir(pessoa.id, this.tabela);
       }
     });
+  }
+
+  mudarStatus(pessoa) {
+    const novoStatus = !pessoa.ativo;
+    this.pessoaService.alterarStatus(pessoa.id, novoStatus)
+      .then(() => {
+        pessoa.ativo = novoStatus;
+        this.toasty.success(`${pessoa.nome} está ${novoStatus ? 'ativo' : 'inativo'}`);
+      })
+      .catch(erro => this.errorhandler.handle(erro));
   }
 }
