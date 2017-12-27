@@ -46,12 +46,16 @@ export class PessoasService {
             });
   }
 
+  /* Obtem o content */
   listarTodas(): Promise<any> {
     const headers = new Headers();
     headers.append('Authorization', 'Basic YWRtaW5AZG1zZWxldHJvbmljYS5jb206YWRtaW4=');
     return this.http.get(this.pessoasUrl, { headers })
             .toPromise()
-            .then(response => response.json());
+            .then(response => response.json().content)
+            .catch(erro => {
+              return Promise.reject(erro);
+            });
   }
 
   excluir(id: number): Promise<void> {
