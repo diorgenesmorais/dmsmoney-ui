@@ -1,3 +1,5 @@
+import { ToastyService } from 'ng2-toasty';
+import { LancamentoService } from './../lancamento.service';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -16,7 +18,9 @@ export class LancamentoCadastroComponent implements OnInit {
   constructor(
     private categoriaService: CategoriasService,
     private errorHandler: ErrorHandlerService,
-    private pessoaService: PessoasService
+    private pessoaService: PessoasService,
+    private lancamentoService: LancamentoService,
+    private toasty: ToastyService
   ) { }
 
     tipos = [
@@ -59,6 +63,12 @@ export class LancamentoCadastroComponent implements OnInit {
     }
 
     salvar(form: FormControl) {
-      console.log(this.lancamento);
+      this.lancamentoService.adicionar(this.lancamento)
+        .then(() => {
+          this.toasty.success('Lançamento salvo com sucesso!');
+
+          form.reset();
+          this.lancamento = new Lancamento();
+        }).catch(erro => this.errorHandler.handle(erro));
     }
 }

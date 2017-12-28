@@ -1,3 +1,4 @@
+import { Lancamento } from './../core/model/lancamento';
 import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
@@ -67,5 +68,17 @@ export class LancamentoService {
             .catch(error => {
               return Promise.reject(error);
             });
+  }
+
+  adicionar(lancamento: Lancamento): Promise<Lancamento> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AZG1zZWxldHJvbmljYS5jb206YWRtaW4=');
+    headers.append('Content-Type', 'application/json');
+
+    console.log('Tentou salvar', JSON.stringify(lancamento));
+    return this.http.post(this.url, JSON.stringify(lancamento), { headers })
+            .toPromise()
+            .then(response => response.json())
+            .catch(erro => (Promise.reject(erro)));
   }
 }

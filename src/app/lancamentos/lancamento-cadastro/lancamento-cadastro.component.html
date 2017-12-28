@@ -34,17 +34,17 @@
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
         <input pInputText type="text" placeholder="0,00" name="valor" required
-        currencyMask [options]="{ prefix: '', allowNegative: false}" [(ngModel)]="lancamento.valor" >
+        currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false}" [(ngModel)]="lancamento.valor" >
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
         <p-dropdown [options]="categorias" [autoWidth]="false" placeholder="Selecione"
-           name="categoria" required [(ngModel)]="lancamento.categoria" ></p-dropdown>
+           name="categoria" required [(ngModel)]="lancamento.categoria.id" ></p-dropdown>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Pessoa {{ pessoa.value }}</label>
+        <label>Pessoa</label>
         <p-dropdown [options]="pessoas" [autoWidth]="false" placeholder="Selecione"
-           #pessoa [filter]="true" name="pessoa" required [(ngModel)]="lancamento.pessoa" ></p-dropdown>
+           #pessoa [filter]="true" name="pessoa" required [(ngModel)]="lancamento.pessoa.id" ></p-dropdown>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
