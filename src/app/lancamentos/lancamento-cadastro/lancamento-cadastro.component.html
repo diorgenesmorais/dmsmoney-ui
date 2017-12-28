@@ -1,55 +1,58 @@
 <div class="container">
-  <form #lancamentoForm="ngForm" >
+  <form #f="ngForm" (ngSubmit)="salvar(f)" >
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Novo Lançamento</h1>
       </div>
 
       <div class="ui-g-12">
-        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+        <p-selectButton name="tipo" [options]="tipos"
+          [(ngModel)]="lancamento.tipo" #tipo ></p-selectButton>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Lançamento</label>
         <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="false"
-          [showIcon]="true" [locale]="pt_BR" ngModel name="lancamento" #lancamento="ngModel"
-          required ></p-calendar>
+          [showIcon]="true" [locale]="pt_BR" name="vencimento" #vencimento="ngModel"
+          required [(ngModel)]="lancamento.dataVencimento" ></p-calendar>
 
-        <app-message [control]="lancamento" error="required" text="Informe o lançamento" ></app-message>
+        <app-message [control]="vencimento" error="required" text="Informe o lançamento" ></app-message>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt_BR"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt_BR"
+          [(ngModel)]="lancamento.dataPagto" name="pagamento" #pagamento="ngModel" ></p-calendar>
       </div>
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Descição</label>
-        <input pInputText type="text" name="descricao" ngModel #descricao="ngModel"
-          required minlength="5">
+        <input pInputText type="text" name="descricao" #descricao="ngModel"
+          required minlength="5" [(ngModel)]="lancamento.descricao" >
 
         <app-message [control]="descricao" error="required" text="Informe uma descrição"></app-message>
         <app-message [control]="descricao" error="minlength" text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>
       </div>
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
-        <input pInputText type="text" placeholder="0,00" name="valor" ngModel required
-        currencyMask [options]="{ prefix: '', allowNegative: false}">
+        <input pInputText type="text" placeholder="0,00" name="valor" required
+        currencyMask [options]="{ prefix: '', allowNegative: false}" [(ngModel)]="lancamento.valor" >
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" [autoWidth]="false"
-          placeholder="Selecione" ngModel name="categoria" required ></p-dropdown>
+        <p-dropdown [options]="categorias" [autoWidth]="false" placeholder="Selecione"
+           name="categoria" required [(ngModel)]="lancamento.categoria" ></p-dropdown>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa {{ pessoa.value }}</label>
         <p-dropdown [options]="pessoas" [autoWidth]="false" placeholder="Selecione"
-           #pessoa [filter]="true" ngModel name="pessoa" required ></p-dropdown>
+           #pessoa [filter]="true" name="pessoa" required [(ngModel)]="lancamento.pessoa" ></p-dropdown>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
-        <textarea pInputTextarea rows="3" ></textarea>
+        <textarea pInputTextarea rows="3" name="observacao"
+         [(ngModel)]="lancamento.observacao" ></textarea>
       </div>
       <div class="ui-g-12">
-        <button type="submit" label="Salvar" pButton [disabled]="!lancamentoForm.valid" ></button>
+        <button type="submit" label="Salvar" pButton [disabled]="!f.valid" ></button>
         <button type="button" label="Novo" pButton class="ui-button-info"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>

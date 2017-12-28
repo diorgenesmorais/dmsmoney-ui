@@ -1,7 +1,10 @@
+import { FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+
 import { PessoasService } from './../../pessoas/pessoas.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { CategoriasService } from './../../categorias/categorias.service';
-import { Component, OnInit } from '@angular/core';
+import { Lancamento } from './../../core/model/lancamento';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -22,9 +25,8 @@ export class LancamentoCadastroComponent implements OnInit {
     ];
 
     categorias = [];
-
     pessoas = [];
-
+    lancamento = new Lancamento();
     pt_BR: any;
 
     ngOnInit() {
@@ -54,5 +56,9 @@ export class LancamentoCadastroComponent implements OnInit {
           this.pessoas = pessoas.map(p => ({ label: p.nome, value: p.id }));
         })
         .catch(e => this.errorHandler.handle(e));
+    }
+
+    salvar(form: FormControl) {
+      console.log(this.lancamento);
     }
 }
