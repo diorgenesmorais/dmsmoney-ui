@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { error } from 'util';
+import { Pessoa } from '../core/model/pessoa';
 
 export class PessoaFiltro {
   nome: string;
@@ -81,5 +82,16 @@ export class PessoasService {
             .catch(error => {
               return Promise.reject(error);
             });
+  }
+
+  adicionar(pessoa: Pessoa): Promise<Pessoa> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AZG1zZWxldHJvbmljYS5jb206YWRtaW4=');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(this.pessoasUrl, JSON.stringify(pessoa), { headers })
+              .toPromise()
+              .then(response => response.json())
+              .catch(erro => (Promise.reject(erro)));
   }
 }
