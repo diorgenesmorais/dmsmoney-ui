@@ -25,7 +25,6 @@ export class PessoaCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
-    this.pessoa.ativo = true;
     this.pessoaService.adicionar(this.pessoa)
       .then(() => {
         this.toasty.success('Adicionou a pessoa com sucesso');

@@ -3,6 +3,6 @@ import { Endereco } from './endereco';
 export class Pessoa {
   id: number;
   nome: string;
-  ativo: boolean;
+  ativo = true;
   endereco = new Endereco();
 }
