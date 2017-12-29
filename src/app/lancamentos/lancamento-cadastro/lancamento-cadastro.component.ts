@@ -36,17 +36,17 @@ export class LancamentoCadastroComponent implements OnInit {
     pt_BR: any;
 
     ngOnInit() {
-      console.log(this.route.snapshot.params['id']);
-        this.pt_BR = {
-          firstDayOfWeek: 0,
-          dayNames: [ "Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado" ],
-          dayNamesShort: [ "dom","seg","ter","qua","qui","sex","sáb" ],
-          dayNamesMin: [ "D","S","T","Q","Q","S","S" ],
-          monthNames: [ "Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro" ],
-          monthNamesShort: [ "Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez" ]
-        };
-        this.carregarCategorias();
-        this.carregarPessoas();
+      this.pt_BR = {
+        firstDayOfWeek: 0,
+        dayNames: [ "Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado" ],
+        dayNamesShort: [ "dom","seg","ter","qua","qui","sex","sáb" ],
+        dayNamesMin: [ "D","S","T","Q","Q","S","S" ],
+        monthNames: [ "Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro" ],
+        monthNamesShort: [ "Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez" ]
+      };
+      this.carregarCategorias();
+      this.carregarPessoas();
+      this.carregarLancamento(this.route.snapshot.params['id']);
     }
 
     carregarCategorias() {
@@ -67,11 +67,15 @@ export class LancamentoCadastroComponent implements OnInit {
 
     salvar(form: FormControl) {
       this.lancamentoService.adicionar(this.lancamento)
-        .then(() => {
+        .then(response => {
           this.toasty.success('Lançamento salvo com sucesso!');
 
           form.reset();
           this.lancamento = new Lancamento();
         }).catch(erro => this.errorHandler.handle(erro));
+    }
+
+    carregarLancamento(id: number) {
+      console.log(this.lancamentoService.buscarPorId(id));
     }
 }
