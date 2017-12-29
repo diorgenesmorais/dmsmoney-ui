@@ -2,6 +2,7 @@ import { ToastyService } from 'ng2-toasty';
 import { LancamentoService } from './../lancamento.service';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { PessoasService } from './../../pessoas/pessoas.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -20,7 +21,8 @@ export class LancamentoCadastroComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private pessoaService: PessoasService,
     private lancamentoService: LancamentoService,
-    private toasty: ToastyService
+    private toasty: ToastyService,
+    private route: ActivatedRoute
   ) { }
 
     tipos = [
@@ -34,6 +36,7 @@ export class LancamentoCadastroComponent implements OnInit {
     pt_BR: any;
 
     ngOnInit() {
+      console.log(this.route.snapshot.params['id']);
         this.pt_BR = {
           firstDayOfWeek: 0,
           dayNames: [ "Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado" ],
