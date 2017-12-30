@@ -35,6 +35,10 @@ export class LancamentoCadastroComponent implements OnInit {
     lancamento = new Lancamento();
     pt_BR: any;
 
+    get editando() {
+      return Boolean(this.lancamento.id);
+    }
+
     ngOnInit() {
       this.pt_BR = {
         firstDayOfWeek: 0,
@@ -44,9 +48,14 @@ export class LancamentoCadastroComponent implements OnInit {
         monthNames: [ "Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro" ],
         monthNamesShort: [ "Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez" ]
       };
-      this.carregarCategorias();
-      this.carregarPessoas();
-      this.carregarLancamento(this.route.snapshot.params['id']);
+      const id = this.route.snapshot.params['id'];
+
+      if (id) {
+        this.carregarLancamento(id);
+      }
+        this.carregarCategorias();
+        this.carregarPessoas();
+
     }
 
     carregarCategorias() {
@@ -65,7 +74,7 @@ export class LancamentoCadastroComponent implements OnInit {
         .catch(e => this.errorHandler.handle(e));
     }
 
-    salvar(form: FormControl) {
+    adicionarLancamento(form: FormControl) {
       this.lancamentoService.adicionar(this.lancamento)
         .then(response => {
           this.toasty.success('Lançamento salvo com sucesso!');
@@ -75,7 +84,26 @@ export class LancamentoCadastroComponent implements OnInit {
         }).catch(erro => this.errorHandler.handle(erro));
     }
 
+    atualizarLancamento(form: FormControl) {
+      this.lancamentoService.atualizar(this.lancamento)
+        .then(response => {
+          this.lancamento = response;
+          this.toasty.success('Lançamento atualizado com sucesso!');
+        })
+        .catch(erro => this.errorHandler.handle(erro));
+    }
+
+    salvar(form: FormControl) {
+      if (this.editando) {
+        this.atualizarLancamento(form);
+      } else {
+        this.adicionarLancamento(form);
+      }
+    }
+
     carregarLancamento(id: number) {
-      console.log(this.lancamentoService.buscarPorId(id));
+      this.lancamentoService.buscarPorId(id)
+        .then(lancamento => this.lancamento = lancamento)
+        .catch(erro => this.errorHandler.handle(erro));
     }
 }

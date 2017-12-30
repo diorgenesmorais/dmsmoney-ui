@@ -85,6 +85,7 @@ export class LancamentoService {
   atualizar(lancamento: Lancamento): Promise<Lancamento> {
     const headers = new Headers();
     headers.append('Authorization', 'Basic YWRtaW5AZG1zZWxldHJvbmljYS5jb206YWRtaW4=');
+    headers.append('Content-Type', 'application/json');
 
     return this.http.put(`${this.url}/${lancamento.id}`, JSON.stringify(lancamento), { headers })
             .toPromise()
