@@ -14,6 +14,7 @@ import { PessoaPesquisaComponent } from './pessoas/pessoa-pesquisa/pessoa-pesqui
 import { PessoaCadastroComponent } from './pessoas/pessoa-cadastro/pessoa-cadastro.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
   { path: 'lancamentos', component: LancamentoPesquisaComponent },
   { path: 'lancamentos/novo', component: LancamentoCadastroComponent },
   { path: 'lancamentos/:id', component: LancamentoCadastroComponent },
