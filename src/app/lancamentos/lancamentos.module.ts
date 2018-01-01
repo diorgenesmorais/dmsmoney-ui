@@ -1,4 +1,3 @@
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -19,6 +18,7 @@ import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pe
 import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from './../shared/shared.module';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: 'right',
@@ -35,7 +35,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,
 
     InputTextModule,
     ButtonModule,
@@ -49,7 +48,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 
     CurrencyMaskModule,
 
-    SharedModule
+    SharedModule,
+    LancamentosRoutingModule
   ],
   providers: [
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
