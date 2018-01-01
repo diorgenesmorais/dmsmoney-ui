@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { ToastyService } from 'ng2-toasty';
 import { LancamentoService } from './../lancamento.service';
 import { FormControl } from '@angular/forms';
@@ -23,7 +24,8 @@ export class LancamentoCadastroComponent implements OnInit {
     private lancamentoService: LancamentoService,
     private toasty: ToastyService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) { }
 
     tipos = [
@@ -49,6 +51,8 @@ export class LancamentoCadastroComponent implements OnInit {
         monthNames: [ "Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro" ],
         monthNamesShort: [ "Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez" ]
       };
+
+      this.title.setTitle('Novo lançamento');
       const id = this.route.snapshot.params['id'];
       /* preciso garantir que o 'id' é um number */
       if (!isNaN(id)) {
@@ -57,6 +61,10 @@ export class LancamentoCadastroComponent implements OnInit {
         this.carregarCategorias();
         this.carregarPessoas();
 
+    }
+
+    atualizarTituloEdicao() {
+      this.title.setTitle(`Edição de lançamento: ${this.lancamento.descricao}`);
     }
 
     carregarCategorias() {
@@ -89,6 +97,7 @@ export class LancamentoCadastroComponent implements OnInit {
         .then(response => {
           this.lancamento = response;
           this.toasty.success('Lançamento atualizado com sucesso!');
+          this.atualizarTituloEdicao();
         })
         .catch(erro => this.errorHandler.handle(erro));
     }
@@ -103,7 +112,10 @@ export class LancamentoCadastroComponent implements OnInit {
 
     carregarLancamento(id: number) {
       this.lancamentoService.buscarPorId(id)
-        .then(lancamento => this.lancamento = lancamento)
+        .then(lancamento => {
+          this.lancamento = lancamento;
+          this.atualizarTituloEdicao();
+        })
         .catch(erro => this.errorHandler.handle(erro));
     }
 

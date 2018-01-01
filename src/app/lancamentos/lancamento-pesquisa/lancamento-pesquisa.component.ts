@@ -1,9 +1,12 @@
-import { ErrorHandlerService } from './../../core/error-handler.service';
 import { DecimalPipe } from '@angular/common';
-import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
 import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
 import { ToastyService } from 'ng2-toasty';
+
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 
 @Component({
   selector: 'app-lancamento-pesquisa',
@@ -22,10 +25,12 @@ export class LancamentoPesquisaComponent implements OnInit {
     private error: ErrorHandlerService,
     private toastyService: ToastyService,
     private confirmation: ConfirmationService,
-    private decimalPipe: DecimalPipe
+    private decimalPipe: DecimalPipe,
+    private title: Title
   ) {}
 
   ngOnInit() {
+    this.title.setTitle('Pesquisa de lançamentos');
   }
 
   pesquisar(pagina = 0) {
