@@ -75,7 +75,6 @@ export class LancamentoService {
     headers.append('Authorization', 'Basic YWRtaW5AZG1zZWxldHJvbmljYS5jb206YWRtaW4=');
     headers.append('Content-Type', 'application/json');
 
-    console.log('Tentou salvar', JSON.stringify(lancamento));
     return this.http.post(this.url, JSON.stringify(lancamento), { headers })
             .toPromise()
             .then(response => response.json())

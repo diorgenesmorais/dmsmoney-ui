@@ -50,8 +50,8 @@ export class LancamentoCadastroComponent implements OnInit {
         monthNamesShort: [ "Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez" ]
       };
       const id = this.route.snapshot.params['id'];
-
-      if (id) {
+      /* preciso garantir que o 'id' é um number */
+      if (!isNaN(id)) {
         this.carregarLancamento(id);
       }
         this.carregarCategorias();
