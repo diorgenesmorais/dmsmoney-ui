@@ -58,9 +58,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     LancamentoCadastroComponent,
     LancamentoPesquisaComponent
   ],
-  exports: [
-    LancamentoCadastroComponent,
-    LancamentoPesquisaComponent
-  ]
+  exports: []
 })
 export class LancamentosModule { }
