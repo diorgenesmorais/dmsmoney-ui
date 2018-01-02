@@ -16,7 +16,8 @@
     </p-column>
     <p-column styleClass="col-actions">
       <ng-template let-pesona="rowData" pTemplate="body">
-        <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+        <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
+          [routerLink]="['/pessoas', pesona.id]" ></a>
         <button pButton icon="fa-trash" (click)="confirmarExclusao(pesona)" ></button>
       </ng-template>
     </p-column>

@@ -1,3 +1,4 @@
+import { PessoasRoutingModule } from './pessoas-routing.module';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
@@ -23,7 +24,8 @@ import { SharedModule } from './../shared/shared.module';
     TooltipModule,
     ButtonModule,
 
-    SharedModule
+    SharedModule,
+    PessoasRoutingModule
   ],
   declarations: [
     PessoaCadastroComponent,

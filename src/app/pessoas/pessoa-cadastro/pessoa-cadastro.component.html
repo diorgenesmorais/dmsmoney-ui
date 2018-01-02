@@ -2,7 +2,7 @@
 
   <form #pessoaForm="ngForm" (ngSubmit)="salvar(pessoaForm)" >
     <div class="ui-g-12">
-      <h1>Nova Pessoa</h1>
+      <h1>{{ editando ? 'Editar' : 'Nova' }} Pessoa</h1>
     </div>
 
     <div class="ui-g-12 ui-fluid">
@@ -69,8 +69,9 @@
 
     <div class="ui-g-12">
       <button type="submit" label="Salvar" pButton [disabled]="!pessoaForm.valid" ></button>
-      <button type="button" label="Novo" pButton class="ui-button-info"></button>
-      <a href="javascript:;">Voltar para a pesquisa</a>
+      <button type="button" label="Novo" pButton class="ui-button-info"
+          (click)="nova(pessoaForm)" ></button>
+      <a [routerLink]="['/pessoas']" >Voltar para a pesquisa</a>
     </div>
   </form>
 </div>

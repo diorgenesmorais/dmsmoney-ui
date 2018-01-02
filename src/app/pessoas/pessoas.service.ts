@@ -94,4 +94,23 @@ export class PessoasService {
               .then(response => response.json())
               .catch(erro => (Promise.reject(erro)));
   }
+
+  buscarPorId(id: number): Promise<Pessoa> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AZG1zZWxldHJvbmljYS5jb206YWRtaW4=');
+
+    return this.http.get(`${this.pessoasUrl}/${id}`, { headers })
+              .toPromise()
+              .then(response => response.json() as Pessoa);
+  }
+
+  atualizar(pessoa: Pessoa): Promise<Pessoa> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AZG1zZWxldHJvbmljYS5jb206YWRtaW4=');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.pessoasUrl}/${pessoa.id}`, JSON.stringify(pessoa), { headers })
+              .toPromise()
+              .then(response => response.json() as Pessoa);
+  }
 }
