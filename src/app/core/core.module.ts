@@ -1,3 +1,4 @@
+import { AuthService } from './../seguranca/auth.service';
 import { RouterModule } from '@angular/router';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
@@ -33,6 +34,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     PessoasService,
     ErrorHandlerService,
     CategoriasService,
+    AuthService,
 
     ConfirmationService,
     DecimalPipe,
