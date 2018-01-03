@@ -26,10 +26,19 @@ export class AuthService {
     return this.http.post(this.oauthTokenUrl, body, { headers })
       .toPromise()
       .then(response => {
-        console.log(response);
         this.armazenarToken(response.json().access_token);
       })
-      .catch(e => console.log(e));
+      .catch(response => {
+        if (response.status === 400) {
+          const responseJson = response.json();
+
+          if (responseJson.error === 'invalid_grant') {
+            return Promise.reject('Usuário ou senha inválido');
+          }
+        }
+
+        return Promise.reject(response);
+      });
   }
 
   armazenarToken(token: string) {
