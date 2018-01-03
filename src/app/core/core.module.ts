@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';
+import { JwtHelper } from 'angular2-jwt';
 
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
@@ -39,7 +40,8 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     ConfirmationService,
     DecimalPipe,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
-    Title
+    Title,
+    JwtHelper
   ]
 })
 export class CoreModule { }
