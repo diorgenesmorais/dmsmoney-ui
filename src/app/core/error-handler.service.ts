@@ -15,12 +15,13 @@ export class ErrorHandlerService {
     } else if (error instanceof Response && error.status >= 400 && error.status <= 499) {
       let errors;
       msg = 'Ocorreu um erro ao processar a sua solicitação';
+      if (error.status === 403) {
+        msg = 'Você não tem permissão para executar esta ação';
+      }
       try {
         errors = error.json();
         msg = errors[0].userMessage;
-      } catch (e) {
-        msg = 'ErrorHandlerService: Não foi possível obter o Json';
-      }
+      } catch (e) {}
     } else {
       msg = 'Erro ao processar serviço remoto.';
     }
