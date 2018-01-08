@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/components/button/button';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { MoneyHttp } from './money-http';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
 export function authHttpServiceFactory(auth: AuthService , http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -32,7 +33,8 @@ export function authHttpServiceFactory(auth: AuthService , http: Http, options: 
   ],
   declarations: [LoginFormComponent],
   providers: [
-    { provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [AuthService, Http, RequestOptions] }
+    { provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [AuthService, Http, RequestOptions] },
+    AuthGuard
   ]
 })
 export class SegurancaModule { }
