@@ -5,7 +5,7 @@ import { LazyLoadEvent } from 'primeng/components/common/api';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { ToastyService } from 'ng2-toasty';
 
-import { PessoasService } from './../pessoas.service';
+import { PessoasService, PessoaFiltro } from './../pessoas.service';
 import { PessoaPesquisaComponent } from './../pessoa-pesquisa/pessoa-pesquisa.component';
 
 @Component({
@@ -16,7 +16,7 @@ import { PessoaPesquisaComponent } from './../pessoa-pesquisa/pessoa-pesquisa.co
 export class PessoaGridComponent {
 
 @Input() peoples = [];
-@Input() filtro = {};
+@Input() filtro = new PessoaFiltro();
 @ViewChild('tabela') tabela;
 
 constructor(
