@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+
 import 'rxjs/add/operator/toPromise';
 import { JwtHelper } from 'angular2-jwt';
 
@@ -77,11 +78,9 @@ export class AuthService {
               .toPromise()
               .then(response => {
                 this.armazenarToken(response.json().access_token);
-                console.log('Novo Access token criado!');
                 return Promise.resolve(null);
               })
               .catch(erro => {
-                console.error('Erro ao renovar token', erro);
                 return Promise.resolve(null);
               });
   }
@@ -90,5 +89,10 @@ export class AuthService {
     const token = localStorage.getItem('token');
 
     return !token || this.jwtHelper.isTokenExpired(token);
+  }
+
+  limparAccessToken() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
   }
 }

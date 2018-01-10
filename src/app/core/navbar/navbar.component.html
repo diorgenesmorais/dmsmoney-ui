@@ -3,7 +3,6 @@
     <div class="ui-g">
       <div class="ui-g-12">
         <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="fa fa-bars"></i></a>
-        <button type="button" (click)="criarNovoAccessToken()" >Renovar token</button>
       </div>
     </div>
   </div>
@@ -14,6 +13,6 @@
       *ngIf="auth.temPermissao('ROLE_PESQUISAR_LANCAMENTO')" ><a routerLink="/lancamentos">Lançamentos</a></li>
     <li class="navbar-menu-item" routerLinkActive="ativo"
     *ngIf="auth.temPermissao('ROLE_PESQUISAR_PESSOA')" ><a routerLink="/pessoas">Pessoas</a></li>
-    <li class="navbar-menu-item"><a href="#">Logout</a></li>
+    <li class="navbar-menu-item"><a href="javascript:;" (click)="logout()" >Logout</a></li>
   </ul>
 </nav>
